@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="RTIN_LIBS/aplicDefaultRtinLibs.jar"/>
+	<classpathentry kind="var" path="RTIN_LIBS/commons-lang3-3.1.jar"/>
+	<classpathentry kind="var" path="RTIN_LIBS/commons-net-3.3.jar"/>
+	<classpathentry kind="var" path="RTIN_LIBS/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="var" path="RTIN_LIBS/pcom-api.jar"/>
+	<classpathentry kind="var" path="RTIN_LIBS/pcseclj.jar"/>
+	<classpathentry kind="var" path="RTIN_LIBS"/>
+	<classpathentry kind="lib" path="G:/Restrita/SVNREPO/rtinLibs/oracle-9i.jar"/>
+	<classpathentry kind="lib" path="jsch-0.1.49.jar"/>
+	<classpathentry kind="lib" path="jsch-0.1.49.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<connections>
+	<connection name='73' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.24.77.73:3306/' usuario='user' senha='passwd' />
+	<connection name='101' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.29.14.101:3306/' usuario='rtinPgtoCtr' senha='rtinPgtoCtr' />
+	<connection name='102' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.29.14.102:3306/' usuario='user' senha='passwd' />
+	<connection name='103' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.29.14.103:3306/' usuario='contratos' senha='contratos' />	
+	<connection name='105' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.29.14.105:3306?allowMultiQueries=true' usuario='contratos' senha='contratos' />
+	<connection name='107' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.29.14.107:3306/' usuario='portal' senha='portal' />
+	<connection name='185' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.17.76.185:3306/' usuario='user' senha='passwd' />
+	<connection name='dw' driver='oracle.jdbc.driver.OracleDriver' url='jdbc:oracle:thin:@172.17.71.135:1521:d1dwh01' usuario='USRLOG' senha='LOGUSR' />
+	<connection name='localhost' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://172.24.77.50:3306/' usuario='root' senha='1234' />
+</connections>

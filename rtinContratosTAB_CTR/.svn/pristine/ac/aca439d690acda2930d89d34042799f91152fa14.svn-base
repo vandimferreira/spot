@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<queries>
+	<query group='aplicDefaultRtin' dcr='Consultas do aplicDefaultRtin'>
+ 		
+ 		<sql name='load_tb_tab_ctr'><![CDATA[
+ 			
+			LOAD DATA INFILE '$arquivo'
+			IGNORE
+			INTO TABLE temp.contratos_TAB_CTR
+			FIELDS TERMINATED BY '\t'
+			LINES TERMINATED BY '\n'
+			IGNORE 1 LINES;		
+			
+ 		]]></sql>
+ 		
+ 		
+ 		<sql name='insert_tb_tab_ctr'><![CDATA[
+			
+			INSERT INTO contratos.TAB_CTR
+			SELECT 
+				CONCAT(RIGHT(CONCAT('0000',ANO_CNTR),4),RIGHT(CONCAT('0000',PRF_DEPE_CNTR),4),RIGHT(CONCAT('0000',NRO_CNTR),4)) AS NR_CTR,
+				TPO_PBMS,
+			    CLS_PBMS,
+			    SCL_PBMS,
+			    SEQ_PBMS,
+			    DT_CTR,
+			    DT_VNCT_CTR,
+			    CD_TIP_EST_CTR,	
+			    DT_EST_CTR,
+				VL_CTR,   
+				NR_ADCT,
+				CONCAT(RIGHT(CONCAT('0000',ANO_CNTR_PRNC),4),RIGHT(CONCAT('0000',PRF_DEPE_PRNC),4),RIGHT(CONCAT('0000',NRO_CNTR_PRNC),4)) AS NRO_CNTR_PRNC,			    
+				VLR_UNIT,
+				UND_PADR,
+			    PRF_DEPE_DEST,
+			    SAG_DEPE_DEST,
+				PRF_DEPE_ADMN,
+			    COD_CPF_CGC,
+			    NOM,
+			    COD_TIPO_PSS,
+				CONCAT(RIGHT(CONCAT('00',TPO_PBMS),2),'.',RIGHT(CONCAT('00',CLS_PBMS),2),'.',RIGHT(CONCAT('000',SCL_PBMS),3),'.',RIGHT(CONCAT('000000',SEQ_PBMS),6)) AS CD_PBMS,
+			    PER_REAJ,
+			    CD_TIP_CTR,
+			    CASE CD_TIP_CTR
+					WHEN 1 THEN 'BANCO DO BRASIL'
+					WHEN 2 THEN 'COBAN'
+					WHEN 3 THEN 'BANCO POPULAR DO BRASIL'
+					WHEN 4 THEN 'BESC'
+					WHEN 6 THEN 'BNC'
+					WHEN 0 THEN 'NAO CADASTRADO'
+				END AS TX_DCR_TIP_OGM,
+			    NULL -- CONTADOR
+			
+			FROM temp.contratos_TAB_CTR;
+					
+ 		]]></sql>
+ 		
+	</query>
+</queries>

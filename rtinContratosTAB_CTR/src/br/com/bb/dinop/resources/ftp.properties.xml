@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ftps>
+	<ftp name='bbtecno' servidor='edibsa.bb.com.br' diretorio='retorno' usuario='xuso9600' senha='digat0' />
+	<ftp name='taa' servidor='edibsa.bb.com.br' diretorio='retorno' usuario='edilogit' senha='03103948' />
+</connections>
