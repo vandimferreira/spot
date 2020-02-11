@@ -1,0 +1,245 @@
+SET @INI_CMP := 20200101;
+SET @FIM_CMP := 20200131;
+SET @AA_MM_INI := EXTRACT(YEAR_MONTH FROM @INI_CMP);
+SET @AA_MM_FIM := EXTRACT(YEAR_MONTH FROM @FIM_CMP);
+SET @ANO_REF:= YEAR(@INI_CMP);
+SET @MES_REF:= MONTH(@FIM_CMP);
+
+SET @QT_TOTAL := (SELECT COUNT(*) FROM gac.RUBRICAS_2020_01);
+SET @QT_REALZ  := (SELECT COUNT(*) FROM gac.RUBRICAS_2020_01 WHERE TRIM(REPLACE(REPLACE(SIT, CHAR(13), ''), CHAR(10),'')) = 'OK');
+SET @PC_REALZ := ((@QT_REALZ/ @QT_TOTAL));
+
+/** ***********************GAC01************************** */
+
+DROP TABLE IF EXISTS gac.REGULARIZAO_RUBRICA_GAC1;
+CREATE TABLE gac.REGULARIZAO_RUBRICA_GAC1
+
+SELECT DISTINCT
+1 AS cd_bloc, 
+164 as cd_in, 
+10000 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref, 
+DATEDIFF(CURDATE(), 19600101) as dt_prct,
+ROUND(@PC_REALZ, 4) as pc_rstd,
+CASE 
+	WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.0000 AND 0.0000 THEN 1.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.3000 AND 0.3999 THEN 2.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.4000 AND 0.4999 THEN 3.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.5000 AND 0.5999 THEN 4.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.6000 AND 0.6999 THEN 5.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.7000 AND 0.7999 THEN 6.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.8000 AND 0.8999 THEN 7.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9000 AND 0.9499 THEN 8.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9500 AND 0.9899 THEN 9.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9900 AND 1.0000 THEN 10.0000
+END AS cd_rstd,
+QUOTE(concat('PERÍODO DE APURAÇÃO: ', @INI_CMP, ' A ', @FIM_CMP)) as tx_jst_rstd
+
+UNION 
+
+SELECT DISTINCT
+1 AS cd_bloc, 
+164 as cd_in, 
+8558 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref, 
+DATEDIFF(CURDATE(), 19600101) as dt_prct,
+ROUND(@PC_REALZ, 4) as pc_rstd,
+CASE 
+	WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.0000 AND 0.0000 THEN 1.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.3000 AND 0.3999 THEN 2.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.4000 AND 0.4999 THEN 3.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.5000 AND 0.5999 THEN 4.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.6000 AND 0.6999 THEN 5.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.7000 AND 0.7999 THEN 6.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.8000 AND 0.8999 THEN 7.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9000 AND 0.9499 THEN 8.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9500 AND 0.9899 THEN 9.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9900 AND 1.0000 THEN 10.0000
+END AS cd_rstd,
+QUOTE(concat('PERÍODO DE APURAÇÃO: ', @INI_CMP, ' A ', @FIM_CMP)) as tx_jst_rstd
+
+UNION 
+
+SELECT DISTINCT
+1 AS cd_bloc, 
+164 as cd_in, 
+9101 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref, 
+DATEDIFF(CURDATE(), 19600101) as dt_prct,
+ROUND( @PC_REALZ, 4) as pc_rstd,
+CASE 
+	WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.0000 AND 0.0000 THEN 1.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.3000 AND 0.3999 THEN 2.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.4000 AND 0.4999 THEN 3.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.5000 AND 0.5999 THEN 4.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.6000 AND 0.6999 THEN 5.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.7000 AND 0.7999 THEN 6.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.8000 AND 0.8999 THEN 7.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9000 AND 0.9499 THEN 8.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9500 AND 0.9899 THEN 9.0000
+    WHEN ROUND(@PC_REALZ, 4) BETWEEN  0.9900 AND 1.0000 THEN 10.0000
+END AS cd_rstd,
+QUOTE(concat('PERÍODO DE APURAÇÃO: ', @INI_CMP, ' A ', @FIM_CMP)) as tx_jst_rstd;
+
+
+
+/** ***********************GAC02************************** */
+DROP TABLE IF EXISTS gac.REGULARIZAO_RUBRICA_GAC2;
+CREATE TABLE gac.REGULARIZAO_RUBRICA_GAC2
+
+SELECT DISTINCT
+104 as cd_vrv,  -- QT IMOVEIS COM SALDOS REGULARES
+10000 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref,  
+@QT_REALZ as vl_vrv, 
+164 as cd_in
+
+UNION 
+
+SELECT DISTINCT
+105 as cd_crv, -- QT TOTAL DE IMOVEIS ALIENADOS
+10000 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref,  
+@QT_TOTAL as vl_vrv, 
+164 as cd_in
+
+UNION 
+
+SELECT DISTINCT
+104 as cd_vrv,  -- QT IMOVEIS COM SALDOS REGULARES
+8558 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref,  
+@QT_REALZ as vl_vrv, 
+164 as cd_in
+
+UNION 
+
+SELECT DISTINCT
+105 as cd_crv, -- QT TOTAL DE IMOVEIS ALIENADOS
+8558 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref,  
+@QT_TOTAL as vl_vrv, 
+164 as cd_in
+
+UNION 
+
+SELECT DISTINCT
+104 as cd_vrv, -- QT IMOVEIS COM SALDOS REGULARES
+9101 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref,  
+@QT_REALZ as vl_vrv, 
+164 as cd_in
+
+UNION 
+
+SELECT DISTINCT
+105 as cd_crv,   -- QT TOTAL DE IMOVEIS ALIENADOS
+9101 as cd_prf_depe, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref,  
+@QT_TOTAL as vl_vrv, 
+164 as cd_in;
+
+
+/** ***********************GAC03************************** */
+DROP TABLE IF EXISTS gac.REGULARIZAO_RUBRICA_GAC3;
+CREATE TABLE gac.REGULARIZAO_RUBRICA_GAC3
+SELECT DISTINCT
+23 as cd_evt, 
+164 as cd_in, 
+2 as qlc_evt, 
+9101 as cd_prf_depe,
+QUOTE(CONCAT(PRF, ' ', CONTA, ' ', MM_REF)) as nr_doc, 
+@ANO_REF as ano_ref,  
+@MES_REF as mes_ref, 
+DATEDIFF(CURDATE() , 19600101) as dt_prct
+FROM gac.RUBRICAS_2020_01
+WHERE TRIM(REPLACE(REPLACE(SIT, CHAR(13), ''), CHAR(10),'')) <> 'OK'
+
+ORDER BY PRF, CONTA ;
+
+SELECT * FROM gac.RUBRICAS_2020_01
+where TRIM(REPLACE(REPLACE(SIT, CHAR(13), ''), CHAR(10),'')) = 'OK';
+
+
+(SELECT COUNT(*) FROM gac.RUBRICAS_2020_01 WHERE TRIM(REPLACE(REPLACE(SIT, CHAR(13), ''), CHAR(10),'')) = 'OK')
+;
+
+
+
+
+SELECT
+	'VALUES(',
+	cd_bloc,
+	',',
+	cd_in,
+	',',
+	cd_prf_depe,
+	',',
+	ano_ref,
+	',',
+	mes_ref,
+	',',
+	dt_prct,
+	',',
+	pc_rstd,
+	',',
+	cd_rstd,
+	',',
+	tx_jst_rstd,
+	')'
+FROM 
+	gac.REGULARIZAO_RUBRICA_GAC1
+	;
+
+
+SELECT
+	'VALUES(',
+	cd_vrv,
+	',',
+	cd_prf_depe,
+	',',
+	ano_ref,
+	',',
+	mes_ref,
+	',',
+	vl_vrv,
+	',',
+	cd_in,
+	')'
+FROM 
+	gac.REGULARIZAO_RUBRICA_GAC2
+;
+
+
+
+SELECT
+	'VALUES(',
+	cd_evt,
+	',',
+	cd_in,
+	',',
+	qlc_evt,
+	',',
+	cd_prf_depe,
+	',',
+	nr_doc,
+	',',
+	ano_ref,
+	',',
+	mes_ref,
+	',',
+	dt_prct,
+	')'
+FROM 
+	gac.REGULARIZAO_RUBRICA_GAC3
+;
+
