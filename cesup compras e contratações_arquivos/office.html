@@ -1,0 +1,695 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>cesup compras e contratações</title>
+    <link rel="icon" href="/web4/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/web4/css/materialize.min.css">
+    <link rel="stylesheet" href="/web4/css/font-icon_materialize.css">
+    <link rel="stylesheet" href="/web4/css/newportal.css">
+    <link rel="stylesheet" href="/web4/css/buttons.css">
+    <!--<link rel="stylesheet" href="/web4/css/noel.css">-->
+    <script src="/web4/amcharts4/core.js"></script>
+    <script src="/web4/amcharts4/charts.js"></script>
+    <script src="/web4/amcharts4/themes/animated.js"></script>
+    <script src="/web4/js/jquery-3.4.1.min.js"></script>
+    <script src="/web4/js/materialize.min.js"></script>
+    <script src="/dev/rsc/js/notify.js"></script>
+    <script src="/web4/js/newportal.js"></script>
+    <meta http-equiv="Content-Language" content="pt-br">
+  </head>
+  <body>
+<ul id="slide-outs2" class="sidenav">
+  <li>
+    <div class="user-view">
+      <div class="background black">
+        <img src="/web4/images/cesup_branco.png" style="width: 280px; padding: 20px;">
+      </div>
+      <div class="col s12" style="margin-top: 70px; margin-left: -10px;">
+        <span class="white-text name">Portal Cesup Compras</span>
+      </div>
+    </div>
+  </li>
+  <li style="padding-left: 10px;">
+    <h5>Ferramentas Internas</h5>
+    <div class="divider"></div>
+  </li>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/ctr/" id="btnGedoc">Gedoc</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/priorizado/eventos_priorizados/consulta" id="btnPriorizados">Priorização de Eventos</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/help/" id="btnHelp">Help!</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/arquivo/">Arquivo</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/extdisec/" id="btnExtrato">Publicação de extratos</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/gnt/">Nota Técnica</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/dev/demandas" id="btnDemandas">Demandas de Desenvolvimento</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/dev/portal_noticias" id="btnNoticias">Notícias</a></p
+  <li style="padding-left: 10px;">
+    <h5>Ferramentas Externas</h5>
+    <div class="divider"></div>
+  </li>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://disec6.intranet.bb.com.br/fluxotrb/" id="btnFluxo">Fluxo de Trabalho</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://www.licitacoes-e.com.br/aop/index.jsp">Licitações-e</a></p>
+  <li style="padding-left: 10px;">
+    <h5>Material de Apoio</h5>
+    <div class="divider"></div>
+  </li>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesupcompras.intranet.bb.com.br/t/manuais/fluxo/" id="btnManual">Manual Operacional do Fluxo</a></p>
+<!--
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="#!">Checklist de Licitação</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="#!">Fala Cesup</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="#!">Boletins Disec</a></p>
+-->
+  <li style="padding-left: 10px;">
+    <h5></h5>
+    <div class="divider"></div>
+  </li>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/disec/relatorios" id="btnRelatorios">Relatórios</a></p>
+    <p style="padding-left: 20px;"><a class="grey-text text-darken-2" href="https://cesuplicitacoes.intranet.bb.com.br/ptl/bancoideias/home">Game Conexão</a></p>
+
+</ul>
+    <header style="z-index: 99;background-color: rgba(0,0,0,0);">
+      <nav class="black-text hide-on-small-only" id="nav_large" style="background-color: rgba(255,255,0,0); height: 150px;position: fixed;top:0px;">
+        <div class="nav-wrapper">
+            <a class="brand-logo" style="margin-left: 20px;cursor: pointer;">
+              <img src="/web4/images/icon_menu2.png" style="width: 100px;padding: 20px;margin-top: 30px;" onclick="$('#slide-outs2').sidenav('open');" id="menu_icon">
+            </a>
+            <a href="/dev/" class="brand-logo" style="margin-left: 100px;margin-top: -30px;">
+              <img src="/web4/images/cesup_branco.png" style="margin-top: 80px; width: 230px;margin-left: 20px;" id="img_logo">
+            </a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li style="margin-top: 15px;">
+              <div id="divHelp">
+              </div>
+            </li>
+            <!--
+            <li>
+              <span class="inner-wrapper wrapper-16">
+                <a class="texto_menu white-text link hover-16" href="https://cesuplicitacoes.intranet.bb.com.br/priorizado/eventos_priorizados/consulta" target="_blank">Priorização</a>
+              </span>
+            </li>
+            <li>
+              <span class="inner-wrapper wrapper-16">
+                <a class="texto_menu white-text link hover-16" href="/dev/#indicadores">Resultados</a></li>
+              </span>
+            <li>
+              <span class="inner-wrapper wrapper-16">
+                <a class="texto_menu white-text link hover-16" href="/dev/#noticiaContainer">Notícias</a></li>
+              </span>
+            <li>
+              <span class="inner-wrapper wrapper-16">
+                <a class="texto_menu white-text link hover-16" href="/dev/#projetos">Projetos</a></li>
+              </span>
+            <li>
+              <span class="inner-wrapper wrapper-16">
+                <a class="texto_menu white-text link hover-16" href="/dev/#sobrenos">Sobre Nós</a></li>
+              </span>
+            -->
+            <li>
+              <div id="notifyboxbig" class="col s6 left-align" style="padding-top: : 10px; margin-top: 10px;">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li>
+          <div class="user-view nav_degrade" style="height: 180px;">
+            <div class="background">
+              <img src="images/office.jpg">
+            </div>
+            <a href="#user"><img src="/web4/images/logo_cesup_2.png" style="margin-top: 35px; width: 230px;margin-left: 20px;" id="img_logo"></a>
+          </div>
+        </li>
+        <li>
+          <span class="inner-wrapper wrapper-16">
+            <a class="texto_menu_sidenav black-text link hover-16" href="https://cesuplicitacoes.intranet.bb.com.br/priorizado/eventos_priorizados/consulta" target="_blank">Priorização</a>
+          </span>
+        </li>
+        <li>
+          <span class="inner-wrapper wrapper-16">
+            <a class="texto_menu_sidenav black-text link hover-16" href="/dev/#indicadores">Resultados</a></li>
+          </span>
+        <li>
+          <span class="inner-wrapper wrapper-16">
+            <a class="texto_menu_sidenav black-text link hover-16" href="/dev/#noticiaContainer">Notícias</a></li>
+          </span>
+        <li>
+          <span class="inner-wrapper wrapper-16">
+            <a class="texto_menu_sidenav black-text link hover-16" href="/dev/#projetos">Projetos</a></li>
+          </span>
+        <li>
+          <span class="inner-wrapper wrapper-16">
+            <a class="texto_menu_sidenav black-text link hover-16" href="/dev/#sobrenos">Sobre Nós</a></li>
+          </span>
+        <li>
+          <div id="notifyboxbig" class="col s6 left-align" style="padding: 0px;">
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <!-- INICIO DO PAPAI NOEL 
+    <div style="z-index: 99; left: 17%;" class="event_icon" onclick="window.location.href='https://cesupcompras.intranet.bb.com.br/t/cartao/'">
+      
+      <div class="window">
+        <div class="santa">
+            <div class="head">
+              <div class="face">
+                <div class="redhat">
+                  <div class="whitepart"></div>
+                  <div class="redpart"></div>
+                  <div class="hatball"></div>
+                </div>
+                <div class="eyes"></div>
+                <div class="beard">
+                  <div class="nouse"></div>
+                  <div class="mouth"></div>
+                </div>
+              </div>
+              <div class="ears"></div>
+            </div>
+            <div class="body"></div>
+          </div>
+          
+    </div>
+      <div class="msg_natal" style="padding-top:0px;"><span style="font-size:40px;">Feliz Natal!</span></div>
+    </div>
+    FIM DO PAPAI NOEL -->
+<style>
+  nav{
+    box-shadow: none;
+  }
+</style>
+<script>
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+    $('.dropdown-trigger').dropdown();
+  });
+</script><link rel="stylesheet" href="/dev/rsc/css/toastme.css">
+<script src="/dev/rsc/js/toastme.min.js"></script>
+<script src="/dev/rsc/js/newportal.js"></script>
+		<!-- LARGE -->
+
+
+<style>
+.fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+top: 40%;
+}
+</style>
+		<main class="hide-on-small-only">
+			<section class="white hide-on-small-only">
+				<div class="row">
+					<div class="col s12 white-text right-align" style="position: absolute; margin-top: 200px;z-index: 98;text-shadow:0px 0px 10px black;">
+						<h1 style="font-size: 8vh;">Soluções <span style="color:yellow">inovadoras</span> em<br>Compras e Contratações</h1>
+					</div>
+				</div>
+<!-- VIDEO -->			
+				<!--<img src="/dev/rsc/images/background.jpg" style="margin-top:-1000px;height: 1000px; width: 100%">-->
+  
+				<div class="col s12" id="divVideo" style="margin-top: 580px;">
+					<!--<video autoplay loop poster="/dev/rsc/images/video_site_v4.png" class="video_home"> EXCLUIDO O LOOP DO VÍDEO-->
+<!--					
+-->
+						<video autoplay poster="/dev/rsc/images/video_site_v4.png" class="video_home">
+						  <source src="/dev/rsc/video/video_site_v4.mp4" type="video/mp4" class="video_home">
+						  O Browser não suporta reprodução de video
+						</video>
+				</div>
+			</section>
+			<section class="white hide-on-small-only" id="indicadores">
+				<div class="row">
+					<div class="col s12 left-align">
+						<h4 class="title">Nossos Indicadores</h4>
+						<div class="divider"></div>
+					</div>
+				</div>
+				<div class="row">
+					
+					
+						<div class="col s12 m6 l6" id="economia" style="height: 400px; margin-top:50px;">
+							<img src="https://cesupcompras.intranet.bb.com.br/t/arquivos/imagens/graf1.jpg">
+						</div>
+					
+						<div class="col s12 m6 l6" id="economia" style="height: 400px; margin-top:50px;">
+							<img src="https://cesupcompras.intranet.bb.com.br/t/arquivos/imagens/graf3.jpg">
+						</div>
+					
+				</div>
+			</section>
+
+<!-- NOTÍCIAS GRID -->
+<style>
+	.imgGrid{
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.imgGrid:hover{
+		transform: scale(1.02);
+	}
+	.imgGrid:hover img{
+		box-shadow: 0px 0px 10px black;
+	}
+</style>
+<section class="hide-on-small-only grey lighten-3" style="margin-top: 20px; padding-top: 10px; padding-bottom: 10px;">
+	<div class="row"> 
+		<div class="col s12" style="position:absolute; margin-top: -80px;">
+			<h4 class="title">Notícias</h4>
+		</div>
+		<div class="col s12 m6 l6 imgGrid" onclick="window.open('/dev/noticias/noticias?id=515');" target="_blank">
+			<div class="col s12" style="position:relative; margin: 30px 0px 0px 0px;z-index: 9">
+				<h4 class="white-text title truncate" style="margin-left: 20px;">Janeiro Branco</h4>
+			</div>
+			<div class="col s12" style="position:relative; margin: 10px 0px 0px 0px;">
+				<img src="/dev/rsc/images/news/13.jpg" style=" width: 100%; margin-top: -70px; border-radius: 10px;transform: scale(1.05);">
+			</div>
+		</div>
+		<div class="col s12 m6 l6">
+		
+			<div class="col s12 m6 l6 imgGrid" onclick="window.open('/dev/noticias/noticias?id=514');" target="_blank">
+				<div class="col s12" style="position:relative; margin: 30px 0px 0px 0px;z-index: 9">
+					<h5 class="white-text title truncate">Ecoa 2020</h5>
+				</div>
+				<img src="/dev/rsc/images/news/3.jpg" style="width:100%; margin-top: -50px;" class="imgGrid">
+			</div>
+		
+			<div class="col s12 m6 l6 imgGrid" onclick="window.open('/dev/noticias/noticias?id=513');" target="_blank">
+				<div class="col s12" style="position:relative; margin: 30px 0px 0px 0px;z-index: 9">
+					<h5 class="white-text title truncate">Café Com Comitê</h5>
+				</div>
+				<img src="/dev/rsc/images/news/2.jpg" style="width:100%; margin-top: -50px;" class="imgGrid">
+			</div>
+		
+			<div class="col s12 m6 l6 imgGrid" onclick="window.open('/dev/noticias/noticias?id=512');" target="_blank">
+				<div class="col s12" style="position:relative; margin: 30px 0px 0px 0px;z-index: 9">
+					<h5 class="white-text title truncate">Reunião – Caa  E Convidados</h5>
+				</div>
+				<img src="/dev/rsc/images/news/13.jpg" style="width:100%; margin-top: -50px;" class="imgGrid">
+			</div>
+		
+			<div class="col s12 m6 l6 imgGrid" onclick="window.open('/dev/noticias/noticias?id=511');" target="_blank">
+				<div class="col s12" style="position:relative; margin: 30px 0px 0px 0px;z-index: 9">
+					<h5 class="white-text title truncate">Destaque Do Cesup -  José Miguel Sanches</h5>
+				</div>
+				<img src="/dev/rsc/images/news/13.jpg" style="width:100%; margin-top: -50px;" class="imgGrid">
+			</div>
+		
+		</div>
+	</div>
+</section>
+<!-- FIM DO GRID DE NOTÍCIAS-->
+
+			<section class="white" id="projetos">
+				<div class="row hide-on-small-only">
+					<div class="col s12 left-align">
+						<h4 class="title">Projetos em Desenvolvimento</h4>
+						<div class="divider"></div>
+					</div>
+				</div>
+				<div class="row hide-on-med-and-up">
+					<div class="col s12 left-align">
+						<h4 class="title">Portal Mobile</h4>
+						<div class="divider"></div>
+					</div>
+				</div>
+				<div class="row hide-on-small-only">
+					<div class="col s6 m6 l3" style="cursor: pointer;">
+						<div class="card" style="border-radius: 10px;">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="/dev/rsc/images/photo_gedoc.jpeg" style="border-radius: 10px 10px 0px 0px; height: 300px; width: 100%;">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator grey-text text-darken-4">Gedoc<i class="material-icons right">more_vert</i></span>
+								<p><a target="_blank" href="https://banco365.sharepoint.com/:u:/s/grupo_cesupcompras/EQ-p0aLDQd5InBrmtydafs8BHhWqVgMiEdnN3MAouwhK_Q?e=tVkUk7">Processos Licitatórios</a></p>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">Gedoc<i class="material-icons right">close</i></span>
+								<p>Eficiência operacional na realização dos processos licitatórios.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col s6 m6 l3" style="cursor: pointer;">
+						<div class="card" style="border-radius: 10px;">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="/dev/rsc/images/photo_reducao.jpeg" style="border-radius: 10px 10px 0px 0px; height: 300px; width: 100%;">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator grey-text text-darken-4">Redução de Prazos<i class="material-icons right">more_vert</i></span>
+								<p><a target="_blank" href="https://banco365.sharepoint.com/:u:/s/grupo_cesupcompras/EYgMTOq8iqtIq_kldO5jpHEBNVJXbW__4_4cj5JzZosNnw?e=FA8bRq">Revisão de Etapas</a></p>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">Redução de Prazos<i class="material-icons right">close</i></span>
+								<p>Revisão das etapas previstas no Fluxo de Trabalho para a redução dos prazos de contratação.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col s6 m6 l3" style="cursor: pointer;">
+						<div class="card" style="border-radius: 10px;">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="/dev/rsc/images/photo_digitaliza.jpeg" style="border-radius: 10px 10px 0px 0px; height: 300px; width: 100%;">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator grey-text text-darken-4">Digitalização<i class="material-icons right">more_vert</i></span>
+								<p><a target="_blank" href="https://banco365.sharepoint.com/:u:/s/grupo_cesupcompras/EdC7lSoi-s5NnUQfoU3JnusBFbiouCefvkOMFpEuuAkuzg?e=i1A7LP">Processos Anteriores a 2018</a></p>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">Digitalização<i class="material-icons right">close</i></span>
+								<p>Digitalização dos processos anteriores a 2018 atualmente arquivados no Centro.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col s6 m6 l3" style="cursor: pointer;">
+						<div class="card" style="border-radius: 10px;">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="/dev/rsc/images/photo_game.jpeg" style="border-radius: 10px 10px 0px 0px; height: 300px; width: 100%;">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator grey-text text-darken-4">Game Conexão<i class="material-icons right">more_vert</i></span>
+								<p><a target="_blank" href="https://banco365.sharepoint.com/:u:/s/grupo_cesupcompras/ESeqNINlM8VOuxB4T5ocX2oBIqclQCmxmZ4FfKpuVbEIWQ?e=FHuIJS">Ideias e Sugestões</a></p>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">Game Conexão<i class="material-icons right">close</i></span>
+								<p>Incentivo para a apresentação de ideias e sugestões pelos funcionários.</p>
+								<p>Através do Game os funcionários são incentivados a desenvolverem o projeto de soluções para facilitar e inovar as tarefas do seu dia a dia.</p>
+							</div>
+						</div>
+					</div>
+
+			</section>
+			<section class="white hide-on-small-only">
+				<div class="row" id="sobrenos">
+					<div class="col s12 left-align">
+						<h4 class="title texto_vh_h4">Sobre Nós</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 m5 l5">
+						<div class="col s12 bordas_sobre grey lighten-3 blue-grey-text">
+							<h4 class="texto_sobre texto_vh_h4">Somos especialistas no processo de compras e contratações</h4>
+							<h4 class="texto_sobre texto_vh_h4">Atendemos todas as dependências do país através de soluções inovadoras e eficientes, prezando pela transparência, conformidade e foco no pronto atendimento aos nossos clientes.</h4>
+							<!--
+								<a class="indigo darken-2 col s8 offset-s3 texto_botao_sobre white-text center-align">conheça nossas áreas de atuação</a>
+							-->
+						</div>
+					</div>
+					<div class="col s12 m7 l7">
+						<div class="col s12 cesup">
+							<!--<img src="/dev/rsc/images/cesup.jpg" class="col s12">-->
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- SMALL -->
+		<div class="row black hide-on-med-and-up" style="height: 20px; position: fixed; top: 0px; width: 100%;">
+			<div class="col s4 left-align white-text">
+				<div class="row">
+					<div class="col s4 right-align" style="padding: 0px;">
+						0 
+					</div>
+					<div id="notifybox" class="col s6 left-align" style="padding: 0px;">
+					</div>
+				</div>
+			</div>
+			<div class="col s4 center-align white-text">
+				cesup sp
+			</div>
+			<div class="col s4 right-align white-text">
+				<a class="white-text" onclick="abreGrafico(2)"><i class="tiny material-icons">import_contacts</i></a>
+				<a class="white-text" onclick="fechaConteudo()"><i class="tiny material-icons">lightbulb_outline</i></a>
+			</div>
+		</div>
+
+		<main class="hide-on-med-and-up bgMobile" id="mainMobile">
+			<section class="" id="projetos">
+				<div class="row hide-on-med-and-up">
+					<div class="col s3" onclick="abreGrafico(1)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">insert_chart</i>
+						</div>
+						<p class="texto_small">relatórios</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(2)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">description</i>
+						</div>
+						<p class="texto_small">gedoc</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(3)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">wrap_text</i>
+						</div>
+						<p class="texto_small">fluxo de trabalho</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(4)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">mail_outline</i>
+						</div>
+						<p class="texto_small">e-mail</p>
+					</div>
+				</div>
+				<div class="row hide-on-med-and-up">
+					<div class="col s3" onclick="abreGrafico(5)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">access_time</i>
+						</div>
+						<p class="texto_small">priorizômetro</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(6)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">directions_run</i>
+						</div>
+						<p class="texto_small">ponto eletrônico</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(7)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">cake</i>
+						</div>
+						<p class="texto_small">aniversariantes</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(8)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">import_contacts</i>
+						</div>
+						<p class="texto_small">unibb</p>
+					</div>
+				</div>
+				<div class="row hide-on-med-and-up">
+					<div class="col s3" onclick="abreGrafico(9)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">date_range</i>
+						</div>
+						<p class="texto_small">agenda massagem</p>
+					</div>
+					<div class="col s3" onclick="abreGrafico(10)">
+						<div class="col s12 center-align bgBordasMobile bordas_small">
+							<i class="material-icons grey-text text-darken-3 icon_centered">create</i>
+						</div>
+						<p class="texto_small">notas tecnicas</p>
+					</div>
+				</div>
+				<div class="row hide-on-med-and-up black" id="portalMobile" style="display: none; width: 100%">
+					<div class="row black" style="height: 20px; position: fixed; top: 0px; width: 100%;">
+						<div class="col s12 left-align white-text">
+							<a class="white-text" onclick="fechaConteudo()" id="divVoltar"><< voltar</a>
+						</div>
+					</div>
+					<div class="col s12" id="portalMobileContent">
+					</div>
+
+				</div>
+			</section>
+		</main>
+
+<div class="yellow black-text valign-wrapper z-depth-3" onclick="document.getElementById('btnPriorizados').click();" style="position: fixed; bottom: 20px; right: 20px;z-index: 999;cursor: pointer;border-radius: 10px;padding: 10px;">
+	<div class="col s12 center-align">
+		<i class="large material-icons indigo-text text-darken-3">timer</i>
+		<h5 class="center-align indigo-text text-darken-3" style="margin-top: -5px;">Priorização<br>de Eventos</h5>
+	</div>
+</div>
+
+<div id="modalAtalhos" class="modal">
+	<div class="modal-content">
+		<h4 class="center-align">Atalhos</h4>
+		<p class="center-align">Atalhos de teclado para os principais sistemas do Cesup Compras</p>
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s6">
+				<div class="col s12 card-panel">
+					<table>
+						<thead>
+							<th class="center-align">Atalho</th>
+							<th class="center-align">Sistema</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="center-align">
+									A
+								</td>
+								<td>
+									Menu de Atalhos
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									D
+								</td>
+								<td>
+									Cadastro de Demandas
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									E
+								</td>
+								<td>
+									Extratos Disec
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									F
+								</td>
+								<td>
+									Fluxo de Trabalho
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									G
+								</td>
+								<td>
+									Gedoc
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col s6">
+				<div class="col s12 card-panel">
+					<table>
+						<thead>
+							<th class="center-align">Atalho</th>
+							<th class="center-align">Sistema</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="center-align">
+									H
+								</td>
+								<td>
+									Sistema Help
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									M
+								</td>
+								<td>
+									Manual do Fluxo de Trabalho
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									N
+								</td>
+								<td>
+									Portal de Noticias
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									P
+								</td>
+								<td>
+									Eventos priorizados
+								</td>
+							</tr>
+							<tr>
+								<td class="center-align">
+									R
+								</td>
+								<td>
+									Relatórios
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
+
+
+
+<style>
+	.logoBar{
+		display: none !important;
+	}
+	logo-bar{
+		display: none !important;
+	}
+</style>
+<script>$(document).ready(function(){$('.tooltipped').tooltip();$('#sidenav2').sidenav({edge:'right'});});function sendNotification(){destinatario=[]
+destinatario.push("F8567971")
+destinatario=JSON.stringify(destinatario)
+alert(destinatario)
+$.ajax({url:"/dev/cn",type:"POST",data:{"destinatario":destinatario,"titulo":"Mais Uma Notificação","sistema":"dev","conteudo":"Conteudo de teste","link":"/dev","classe":0},success:function(data){alert(data)}});}
+$(window).keydown(function(e){switch(e.keyCode){case 65:$("#modalAtalhos").modal("open");break;case 68:document.getElementById("btnDemandas").click();break;case 69:document.getElementById("btnExtrato").click();break;case 70:document.getElementById("btnFluxo").click();break;case 71:document.getElementById("btnGedoc").click();break;case 72:document.getElementById("btnHelp").click();break;case 77:document.getElementById("btnManual").click();break;case 78:window.open("/dev/portal_noticias");break;case 80:document.getElementById("btnPriorizados").click();break;case 82:document.getElementById("btnRelatorios").click();break;}});</script>
+
+<html>
+<body>
+		<footer class="page-footer blue-grey grey-text darken-4 text-lighten3 hide-on-small-only">
+			<div class="row" style="margin-top: -25px;">
+				<div class="col s6" style="padding-top: 10px;">
+					<a style="cursor: pointer; text-decoration: underline; text-decoration-color: yellow;" class="modal-trigger left-align white-text" href="#modalFooter">Links <i class="material-icons" style="vertical-align: middle;">keyboard_arrow_up</i></a>
+				</div>
+				<div class="col s6">
+					<p class="right-align white-text" style="font-size: small;padding-right: 10px;padding-top: 0px; text-decoration: underline; text-decoration-color: yellow;">Desenvolvido por Setor de Inovação e Desenvolvimento</p>
+				</div>
+			</div>
+		</footer>
+		<div id="modalFooter" class="modal bottom-sheet">
+			<div class="modal-content blue-grey darken-4">
+				<div class="row">
+					<div class="col m3 l3">
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://www.licitacoes-e.com.br/aop/index.jsp">- Licitações-e</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://disec.intranet.bb.com.br/boletins/exiba?cmdo=boletins.index">- Boletins disec</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://cesuplicitacoes.intranet.bb.com.br/noticia-todas.php">- Acervo de notícias</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://intranet.bb.com.br">- Intranet</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://plataforma.atendimento.bb.com.br:49286/estatico/gaw/app/spas/index/index.app.html#/">- Plataforma</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://intranet1.bb.com.br/inc/home.ctr">- In</a></h5>
+					</div>
+					<div class="col m3 l3 texto_vh_h4">
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://disec6.intranet.bb.com.br/portal/">- Disec</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="https://cesuprede.intranet.bb.com.br/">- Cesup Rede SP</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="#!">- Cesup Plataforma SP</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="#!">- Gepes SP</a></h5>
+						<h5 class="texto_vh_h5"><a class="grey-text text-lighten3" href="#!">- Dipes</a></h5>
+					</div>
+					<div class="col m6 l6 texto_vh_h4">
+						<div class="col s6 right-align">
+							<h5 class="texto_vh_h5 grey-text text-lighten3">Avenida São João, nº 32</h5>
+							<h5 class="texto_vh_h5 grey-text text-lighten3">Centro - São Paulo SP</h5>
+							<h5 class="texto_vh_h5 grey-text text-lighten3">01.036-900</h5>
+							<h5 class="texto_vh_h5 grey-text text-lighten3"></h5>
+							<h5 class="texto_vh_h5 grey-text text-lighten3">11 4297-5000</h5>
+							<h5 class="texto_vh_h5 grey-text text-lighten3">cesupcompras@bb.com.br</h5>
+						</div>
+						<div class="col s6 left-align">
+							<!--<img src="https://cesuplicitacoes.intranet.bb.com.br/images/slides/mapa.png" width="100%">-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer blue-grey darken-4 modal-close" style="cursor: pointer;">
+				<a href="#!" class="modal-close btn-flat white-text left-align" style="text-align: left !important">Fechar <i class="material-icons" style="vertical-align: middle;">keyboard_arrow_down</i></a>
+			</div>
+		</div>
+	</body>
+</html>

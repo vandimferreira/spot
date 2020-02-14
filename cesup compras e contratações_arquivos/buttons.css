@@ -1,0 +1,81 @@
+.botao {
+  width: 250px;
+  font-size: 18px;
+}
+
+.link {
+  display: inline-block;
+  position: relative;
+  color: #020202;
+  text-decoration: none;
+  padding: 10px 0;
+}
+.link-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-left: 20px;
+}
+.inner-wrapper {
+  position: relative;
+  display: inline-block;
+}
+/* hover styles */
+.wrapper-16:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: yellow;
+  transform: scaleY(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s;
+}
+.wrapper-16:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background-color: yellow;
+  transform: scaleY(0);
+  transform-origin: top right;
+  transition: transform 0.3s;
+}
+.wrapper-16 .hover-16 {
+  padding: 10px;
+}
+.wrapper-16 .hover-16:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: yellow;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s;
+}
+.wrapper-16 .hover-16:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background-color: yellow;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+.wrapper-16:hover:before,
+.wrapper-16:hover:after {
+  transform: scaleY(1);
+}
+.wrapper-16:hover .hover-16:before,
+.wrapper-16:hover .hover-16:after {
+  transform: scaleX(1);
+}
